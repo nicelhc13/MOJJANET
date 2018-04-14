@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<grants>
+	</grants>
+	<actions>
+		<action name="procSejin7940_voteAdminMoveInsert" type="controller" standalone="true" />	
+		<action name="procSejin7940_voteAdminMoveDelete" type="controller" standalone="true" />	
+		<action name="dispSejin7940_voteAdminMoveList" type="view" />		
+		<action name="dispSejin7940_voteAdminMoveInsert" type="view" />		
+		<action name="dispSejin7940_voteAdminMoveModify" type="view" />		
+        <action name="dispSejin7940_voteAdminVotedLog" type="view" standalone="true"  />
+		<action name="dispSejin7940_voteOwnVote" type="view" />	
+		<action name="dispSejin7940_voteAdminMoveLog" type="view" admin_index="true" />	
+		
+	</actions>
+</module>

@@ -1,0 +1,110 @@
+<!-- 설명 -->
+<!--#include("_header.html")-->
+<!--%import("filter/delete_checked.xml")-->
+
+<form method="get" action="./" onsubmit="return procFilter(this, delete_checked)" id="message_fo">
+	<input type="hidden" name="delete_type">
+	<table cellspacing="0"  class="x_table x_table-striped x_table-hover">
+		<caption>Total {number_format($total_count)}, Page {number_format($page)}/{number_format($total_page)}</caption>
+		<thead>
+			<tr>
+				<th scope="col">{$lang->no}</th>
+				<th scope="col"><input type="checkbox" onclick="XE.checkboxToggleAll(); return false;"/></th>
+				<th scope="col">대상모듈{$lang->target_module}</th>
+				<th scope="col">대상 카테고리</th>
+				<th scope="col">이동 모듈{$lang->move_module}</th>
+				<th scope="col">이동 카테고리</th>
+				<th scope="col">방식</th>
+				<th scope="col">추천 기준</th>
+				<!--<th scope="col">조회 기준</th>-->
+				<!--<th scope="col">{$lang->regdate}</th>-->
+				<th scope="col">{$lang->cmd_edit}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{@
+				$oModuleModel= &getModel('module');
+				$oDocumentModel = &getModel('document');
+			}
+			<!--@foreach($move_list as $no => $val)-->
+			<tr class="row{$cycle_idx}">
+				<td>{$no}</td>
+				<td><input type="checkbox" name="cart" value="{$val->auto_srl}"/></td>
+				<td>{@$target_info= $oModuleModel->getModuleInfoByModuleSrl($val->target_module); }
+					{$target_info->browser_title} ({$target_info->mid})
+				</td>
+				<td><!--@if($val->target_category)-->
+					{@$target_category = $oDocumentModel->getCategory($val->target_category);}
+					{$target_category->title}
+					<!--@else-->
+					&nbsp;
+					<!--@end-->
+				</td>
+				<td>{@$move_info= $oModuleModel->getModuleInfoByModuleSrl($val->move_module); }
+					{$move_info->browser_title} ({$move_info->mid})
+				</td>
+				<td><!--@if($val->move_category)-->
+					{@$move_category = $oDocumentModel->getCategory($val->move_category);}
+					{$move_category->title}
+					<!--@else-->
+					&nbsp;
+					<!--@end-->
+				</td>
+				<td><!--@if($val->move_type=='move')-->이동<!--@elseif($val->move_type=='copy')-->복사<!--@else-->{$val->move_type}<!--@end--></td>
+				<td><div class="tCenter"><!--@if($val->move_voted)-->{$val->move_voted}회<!--@else-->&nbsp;<!--@end--></div></td>
+				<!--@if($use=='Y')--><td><div class="tCenter"><!--@if($val->move_readed)-->{$val->move_readed}회<!--@else-->&nbsp;<!--@end--></div></td><!--@end-->
+				<!--<td><div class="tCenter">{zdate($val->regdate,"Y-m-d")}</div></td>-->
+
+				<td nowrap>
+					<a href="{getUrl('act','dispSejin7940_voteAdminMoveModify','auto_srl', $val->auto_srl)}" class="x_icon-cog" title="{$lang->cmd_setup}">{$lang->cmd_setup}</a>
+					<a onclick="if(confirm('정말 삭제하시겠습니까?')) {javascript:doCallModuleAction('sejin7940_vote','procSejin7940_voteAdminMoveDelete',{$val->auto_srl})}"  class="x_icon-remove" title="{$lang->cmd_delete}">{$lang->cmd_delete}</a>
+				</td>
+
+			</tr>
+			<!--@end-->
+		</tbody>
+    </table>
+</form>
+
+<div class="x_clearfix">
+	<form cond="$page_navigation" action="./" class="x_pagination x_pull-left" no-error-return-url="true" style="margin-top:0">
+		{@
+			$urlInfo = parse_url(getRequestUriByServerEnviroment());
+			parse_str($urlInfo['query'], $param);
+		}
+		<input loop="$param => $key, $val" cond="!in_array($key, array('mid', 'vid', 'act'))" type="hidden" name="{$key}" value="{$val}" />
+		<ul>
+			<li class="x_disabled"|cond="!$page || $page == 1"><a href="{getUrl('page', '')}">&laquo; {$lang->first_page}</a></li>
+			<block cond="$page_navigation->first_page != 1 && $page_navigation->first_page + $page_navigation->page_count > $page_navigation->last_page - 1 && $page_navigation->page_count != $page_navigation->total_page">
+			{@$isGoTo = true}
+			<li>
+				<a href="#goTo" data-toggle title="{$lang->cmd_go_to_page}">&hellip;</a>
+				<span cond="$isGoTo" id="goTo" class="x_input-append">
+					<input type="number" min="1" max="{$page_navigation->last_page}" required name="page" title="{$lang->cmd_go_to_page}" />
+					<button type="submit" class="x_add-on">Go</button>
+				</span>
+			</li>
+			</block>
+			<!--@while($page_no = $page_navigation->getNextPage())-->
+			{@$last_page = $page_no}
+			<li class="x_active"|cond="$page_no == $page"><a  href="{getUrl('page', $page_no)}">{$page_no}</a></li>
+			<!--@end-->
+			<block cond="$last_page != $page_navigation->last_page && $last_page + 1 != $page_navigation->last_page">
+			{@$isGoTo = true}
+			<li>
+				<a href="#goTo" data-toggle title="{$lang->cmd_go_to_page}">&hellip;</a>
+				<span cond="$isGoTo" id="goTo" class="x_input-append">
+					<input type="number" min="1" max="{$page_navigation->last_page}" required name="page" title="{$lang->cmd_go_to_page}" />
+					<button type="submit" class="x_add-on">Go</button>
+				</span>
+			</li>
+			</block>
+			<li class="x_disabled"|cond="$page == $page_navigation->last_page"><a href="{getUrl('page', $page_navigation->last_page)}" title="{$page_navigation->last_page}">{$lang->last_page} &raquo;</a></li>
+		</ul>
+	</form>
+
+	<span class="x_pull-right x_btn-group">
+		<a class="x_btn x_btn-inverse" href="{getUrl('act','dispSejin7940_voteAdminMoveInsert','module_srl','')}">추천시 이동/복사 등록</a>
+<!--		<a class="x_btn modalAnchor _manage_selected" href="#manageSelectedModule">{$lang->cmd_delete}</a>-->
+	</span>
+</div>

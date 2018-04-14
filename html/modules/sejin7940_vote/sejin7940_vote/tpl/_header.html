@@ -1,0 +1,16 @@
+<load target="sejin7940_vote.js"  />
+<load target="sejin7940_vote.css"  />
+<load target="js/sejin7940_vote_admin.js"  />
+
+<div class="x_page-header">
+	<h1>
+		{$lang->sejin7940_vote} {$lang->cmd_management}
+	</h1>
+</div>
+	
+<ul class="x_nav x_nav-tabs">
+	<li <!--@if($act=='dispSejin7940_voteAdminMove' || $act=='dispSejin7940_voteAdminMoveList' || $act=='dispSejin7940_voteAdminMoveInsert')-->class="x_active"<!--@end-->><a href="{getUrl('act','dispSejin7940_voteAdminMoveList')}">추천시 이동/복사</a></li>
+	<li class="x_active"|cond="$act=='dispSejin7940_voteAdminMoveLog'"><a href="{getUrl('','module','admin','act','dispSejin7940_voteAdminMoveLog')}">추천이동 현황</a></li>
+	<li class="x_active"|cond="$act=='dispSejin7940_voteAdminVotedLog'"><a href="{getUrl('','module','admin','act','dispSejin7940_voteAdminVotedLog')}">추천내역 현황</a></li>
+</ul>
+

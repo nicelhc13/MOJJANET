@@ -1,0 +1,20 @@
+<query id="getDocumentMoveAutoList" action="select">
+    <tables>
+        <table name="document_move_auto" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="target_module" var="target_module" />
+        <condition operation="equal" column="target_category" var="target_category" pipe="and"/>
+        <condition operation="equal" column="move_module" var="move_module" />
+        <condition operation="equal" column="move_category" var="move_category" pipe="and"/>
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="auto_srl" order="sort_order" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+</query>

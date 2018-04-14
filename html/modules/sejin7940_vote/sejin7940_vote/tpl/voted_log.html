@@ -1,0 +1,112 @@
+<include target="_header.html" />
+<!--%import("filter/delete_checked.xml")-->
+
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == ''" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+
+
+<form action="./" method="get"  class="search center x_input-append">
+	<input type="hidden" name="module" value="{$module}" />
+	<input type="hidden" name="act" value="{$act}" />
+
+	<select name="search_target2" title="{$lang->vote_search_target_list}" style="margin-right:4px">
+		<!--@foreach($lang->vote_search_target_list2 as $key2 => $val2)-->
+		<option value="{$key2}" <!--@if($search_target2==$key2)-->selected="selected"<!--@end-->>{$val2}</option>
+		<!--@end-->
+	</select>
+	<input type="search" name="search_keyword2" value="{htmlspecialchars($search_keyword2)}" style="width:100px; margin-right:20px;"/>
+
+	<select name="search_target" title="{$lang->vote_search_target_list}" style="margin-right:4px">
+		<!--@foreach($lang->vote_search_target_list as $key => $val)-->
+		<option value="{$key}" <!--@if($search_target==$key)-->selected="selected"<!--@end-->>{$val}</option>
+		<!--@end-->
+	</select>
+
+	<input type="search" name="search_keyword" value="{htmlspecialchars($search_keyword)}" style="width:100px;"/>
+	<button type="submit" class="x_btn x_btn-inverse">{$lang->cmd_search}</button>
+	<a href="{getUrl('','module',$module,'act',$act)}" class="x_btn">{$lang->cmd_cancel}</a>
+</form>
+
+
+<form method="get" action="./" onsubmit="return procFilter(this, delete_checked)" id="message_fo">
+<input type="hidden" name="delete_type">
+	{@
+		$oDocumentModel= &getModel('document');
+		$oModuleModel = &getModel('module');
+	}
+
+	<table id="votedLogTable" cellspacing="0"  class="x_table x_table-striped x_table-hover">
+		<caption>Total {number_format($total_count)}, Page {number_format($page)}/{number_format($total_page)}</caption>
+		<caption>문서번호를 클릭하면, 해당 글의 추천내역을 볼 수 있습니다. 문서제목 클릭시에는 해당문서가 팝업으로 뜹니다.</caption>
+		<thead>
+			<tr>
+				<th scope="col">{$lang->no}</th>
+				<th scope="col" class="quarter_wide"><div><a href="{getUrl('member_srl','','page','1')}">{$lang->cmd_vote}한 사람<br>[user_id]</a></div></th>
+				<th scope="col"><a href="{getUrl('module_srl','','page','1')}">게시판 (module_srl)</a></th>
+				<th scope="col"><a href="{getUrl('document_srl','','page','1')}">[{$lang->document_srl}] {$lang->title}</a></th>
+				<th scope="col">추천한 날짜</th>
+				<th scope="col">추천여부</th>
+				<th scope="col" class="quarter_wide">{$lang->writer}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--@foreach($voted_log as $no => $val)-->
+			{@
+				$member_info= $oMemberModel->getMemberInfoByMemberSrl($val->voted_member_srl);
+				$module_info = $oModuleModel->getModuleInfoByModuleSrl($val->module_srl);
+			}
+			<tr class="row{$cycle_idx}">
+				<td>{$no}</td>
+				<td style="line-height:140%"><a href="{getUrl('search_target','member_srl','search_keyword',$member_info->member_srl,'page','1')}" title="{$member_info->member_srl}">{$member_info->nick_name}</a> <div class="member_{$member_info->member_srl}" style="cursor:pointer">{$member_info->user_id} [{$member_info->member_srl}]</div></td>
+				<td style="line-height:140%"><a href="{getUrl('','mid',$module_info->mid)}">{$module_info->browser_title}</a><br>{$module_info->mid} <a href="{getUrl('search_target2','module_srl','search_keyword2',$val->module_srl,'page','1')}">[{$val->module_srl}]</a></td>
+				<td><a href="{getUrl('search_target2','document_srl','search_keyword2',$val->document_srl,'page','1')}">[{$val->document_srl}]</a>&nbsp;&nbsp;<a href="{getUrl('','document_srl',$val->document_srl)}" onclick="window.open(this.href);return false;">{$val->title}</a></td>
+				<td><div class="tCenter"><span title="{zdate($val->voted_date,'Y-m-d H:i:s')}">{zdate($val->voted_date,"Y-m-d")}</span></div></td>
+				<td><!--@if($val->point<0)-->비추천 {$val->point}<!--@else-->추천 +{$val->point}<!--@end--></td>
+				<td style="line-height:140%"><div class="member_{$val->document_member}" style="cursor:pointer">{$val->nick_name}</div></td>
+			</tr>
+			<!--@end-->
+		</tbody>
+	</table>
+</form>
+
+<form cond="$page_navigation" action="./" class="x_pagination center">
+	<input type="hidden" name="error_return_url" value="" />
+	<input type="hidden" name="module" value="{$module}" />
+	<input type="hidden" name="act" value="{$act}" />
+	<input cond="$search_keyword" type="hidden" name="search_keyword" value="{$search_keyword}" />
+	<input cond="$search_target" type="hidden" name="search_target" value="{$search_target}" />
+	<ul>
+		<li class="x_disabled"|cond="!$page || $page == 1"><a href="{getUrl('page', '')}">&laquo; {$lang->first_page}</a></li>
+		<block cond="$page_navigation->first_page != 1 && $page_navigation->first_page + $page_navigation->page_count > $page_navigation->last_page - 1 && $page_navigation->page_count != $page_navigation->total_page">
+		{@$isGoTo = true}
+		<li>
+			<a href="#goTo" data-toggle title="{$lang->cmd_go_to_page}">&hellip;</a>
+			<span cond="$isGoTo" id="goTo" class="x_input-append">
+				<input type="number" min="1" max="{$page_navigation->last_page}" required name="page" title="{$lang->cmd_go_to_page}" />
+				<button type="submit" class="x_add-on">Go</button>
+			</span>
+		</li>
+		</block>
+
+		<!--@while($page_no = $page_navigation->getNextPage())-->
+		{@$last_page = $page_no}
+		<li class="x_active"|cond="$page_no == $page"><a  href="{getUrl('page', $page_no)}">{$page_no}</a></li>
+		<!--@end-->
+
+		<block cond="$last_page != $page_navigation->last_page && $last_page + 1 != $page_navigation->last_page">
+		{@$isGoTo = true}
+		<li>
+			<a href="#goTo" data-toggle title="{$lang->cmd_go_to_page}">&hellip;</a>
+			<span cond="$isGoTo" id="goTo" class="x_input-append">
+				<input type="number" min="1" max="{$page_navigation->last_page}" required name="page" title="{$lang->cmd_go_to_page}" />
+				<button type="submit" class="x_add-on">Go</button>
+			</span>
+		</li>
+		</block>
+		<li class="x_disabled"|cond="$page == $page_navigation->last_page"><a href="{getUrl('page', $page_navigation->last_page)}" title="{$page_navigation->last_page}">{$lang->last_page} &raquo;</a></li>
+	</ul>
+</form>
+
+<br>

@@ -1,0 +1,15 @@
+<query id="getDocumentMoveAuto" action="select">
+    <tables>
+        <table name="document_move_auto" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="auto_srl" var="auto_srl" />
+        <condition operation="equal" column="target_module" var="target_module" pipe="and"/>
+        <condition operation="equal" column="target_category" var="target_category" pipe="and" />
+        <condition operation="equal" column="move_module" var="move_module" pipe="and" />
+        <condition operation="equal" column="move_category" var="move_category" pipe="and" />
+    </conditions>
+</query>

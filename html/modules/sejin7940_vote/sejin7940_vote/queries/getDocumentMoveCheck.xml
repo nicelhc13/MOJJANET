@@ -1,0 +1,18 @@
+<query id="getDocumentMoveCheck" action="select">
+    <tables>
+        <table name="document_move_auto" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="target_module" var="target_module" />
+		<group pipe="and">
+	        <condition operation="equal" column="target_category" var="target_category" />
+	        <condition operation="equal" column="target_category" default="0" pipe="or" />
+		</group>
+		<condition operation="less" column="move_voted" var="move_voted" pipe="and" />
+		<condition operation="less" column="move_readed" var="move_readed" pipe="and"/>
+        <condition operation="less" column="move_term" var="move_term" pipe="and" />
+    </conditions>
+</query>

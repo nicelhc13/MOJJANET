@@ -1,0 +1,36 @@
+1. 
+document.controller.php 에서
+
+1) 
+function procDocumentVoteUp()  함수에서
+
+return $this->updateVotedCount($document_srl, $point);
+
+부분을 아래걸로 교체
+
+$output = $this->updateVotedCount($document_srl, $point);
+$this->add('voted_count', $output->get('voted_count'));
+return $output;
+
+
+2)
+function procDocumentVoteDown()  함수에서
+
+return $this->updateVotedCount($document_srl, $point);
+
+부분을 아래걸로 교체
+
+$output = $this->updateVotedCount($document_srl, $point);
+$this->add('blamed_count', $output->get('blamed_count'));
+return $output;
+
+
+
+3) 
+function declaredDocument 함수에서
+
+// Call a trigger (after)
+
+위에다가 추가
+
+$this->add('declared_count', $declared_count+1);

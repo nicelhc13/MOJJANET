@@ -1,0 +1,15 @@
+<query id="insertDocumentMoveLog" action="insert" priority="LOW">
+    <tables>
+        <table name="document_move_log" />
+    </tables>
+    <columns>
+        <column name="document_srl" var="document_srl" filter="number" notnull="notnull" />
+        <column name="member_srl" var="member_srl" filter="number" />
+        <column name="target_module" var="target_module" filter="number" />
+        <column name="target_category" var="target_category" filter="number" />
+        <column name="move_module" var="move_module" filter="number" />
+        <column name="move_category" var="move_category" filter="number" />
+        <column name="move_type" var="move_type" />
+        <column name="regdate" var="regdate" />
+    </columns>
+</query>

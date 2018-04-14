@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="apply_module">
+		<value xml:lang="ko"><![CDATA[적용할 모듈]]></value>
+		<value xml:lang="en"><![CDATA[Apply Module]]></value>
+	</item>
+	<item name="estimate">
+		<value xml:lang="ko"><![CDATA[평가]]></value>
+		<value xml:lang="en"><![CDATA[Estimate]]></value>
+	</item>
+	<item name="cmd_view_own_vote">
+		<value xml:lang="ko"><![CDATA[내가 추천한 글]]></value>
+	</item>
+	<item name="vote_date">
+		<value xml:lang="ko"><![CDATA[추천한 날짜]]></value>
+	</item>
+	<item name="vote_search_target_list" type="array">
+		<item name="user_id">
+			<value xml:lang="ko"><![CDATA[아이디]]></value>
+			<value xml:lang="en"><![CDATA[User ID]]></value>
+			<value xml:lang="jp"><![CDATA[ユーザーＩＤ]]></value>
+			<value xml:lang="zh-CN"><![CDATA[I D]]></value>
+			<value xml:lang="zh-TW"><![CDATA[帳號]]></value>
+			<value xml:lang="fr"><![CDATA[Compte]]></value>
+			<value xml:lang="ru"><![CDATA[ID пользователя]]></value>
+			<value xml:lang="es"><![CDATA[ID]]></value>
+			<value xml:lang="tr"><![CDATA[Kullanıcı Kimliği]]></value>
+			<value xml:lang="vi"><![CDATA[ID sử dụng]]></value>
+		</item>
+		<item name="member_srl">
+			<value xml:lang="ko"><![CDATA[회원 번호]]></value>
+			<value xml:lang="en"><![CDATA[Member Serial Number]]></value>
+			<value xml:lang="jp"><![CDATA[会員番号]]></value>
+			<value xml:lang="zh-CN"><![CDATA[会员编号]]></value>
+			<value xml:lang="zh-TW"><![CDATA[會員編號]]></value>
+			<value xml:lang="fr"><![CDATA[Numéro de Série du Membre]]></value>
+			<value xml:lang="ru"><![CDATA[No. пользователя]]></value>
+			<value xml:lang="es"><![CDATA[Número del usuario]]></value>
+			<value xml:lang="tr"><![CDATA[Üye Seri Numarası]]></value>
+			<value xml:lang="vi"><![CDATA[Mã thành viên]]></value>
+		</item>
+		<item name="nick_name">
+			<value xml:lang="ko"><![CDATA[닉네임]]></value>
+			<value xml:lang="en"><![CDATA[Nickname]]></value>
+			<value xml:lang="jp"><![CDATA[ニックネーム]]></value>
+			<value xml:lang="zh-CN"><![CDATA[昵称]]></value>
+			<value xml:lang="zh-TW"><![CDATA[暱稱]]></value>
+			<value xml:lang="fr"><![CDATA[Surnom]]></value>
+			<value xml:lang="ru"><![CDATA[Ник]]></value>
+			<value xml:lang="es"><![CDATA[Apodo]]></value>
+			<value xml:lang="tr"><![CDATA[Rumuz]]></value>
+		</item>
+		<item name="email_address">
+			<value xml:lang="ko"><![CDATA[이메일]]></value>
+			<value xml:lang="en"><![CDATA[Email]]></value>
+			<value xml:lang="jp"><![CDATA[メールアドレス]]></value>
+			<value xml:lang="zh-CN"><![CDATA[电子邮件]]></value>
+			<value xml:lang="zh-TW"><![CDATA[電子郵件]]></value>
+			<value xml:lang="fr"><![CDATA[Mél]]></value>
+			<value xml:lang="es"><![CDATA[Correo Electrónico]]></value>
+		</item>
+		<!--
+		<item name="regdate">
+			<value xml:lang="ko"><![CDATA[등록일]]></value>
+			<value xml:lang="en"><![CDATA[Date]]></value>
+		</item>
+		<item name="title">
+			<value xml:lang="ko"><![CDATA[제목]]></value>
+			<value xml:lang="en"><![CDATA[Subject]]></value>
+			<value xml:lang="jp"><![CDATA[タイトル]]></value>
+			<value xml:lang="zh-CN"><![CDATA[标题]]></value>
+			<value xml:lang="zh-TW"><![CDATA[標題]]></value>
+			<value xml:lang="fr"><![CDATA[Titre]]></value>
+			<value xml:lang="ru"><![CDATA[Тема]]></value>
+			<value xml:lang="es"><![CDATA[Título]]></value>
+			<value xml:lang="tr"><![CDATA[Konu]]></value>
+			<value xml:lang="vi"><![CDATA[Tiêu đề]]></value>
+		</item>
+		<item name="content">
+			<value xml:lang="ko"><![CDATA[내용]]></value>
+			<value xml:lang="en"><![CDATA[Content]]></value>
+			<value xml:lang="jp"><![CDATA[内容]]></value>
+			<value xml:lang="zh-CN"><![CDATA[内容]]></value>
+			<value xml:lang="zh-TW"><![CDATA[內容]]></value>
+			<value xml:lang="fr"><![CDATA[Contenu]]></value>
+			<value xml:lang="ru"><![CDATA[Содержание]]></value>
+			<value xml:lang="es"><![CDATA[Contenido]]></value>
+			<value xml:lang="tr"><![CDATA[İçerik]]></value>
+			<value xml:lang="vi"><![CDATA[Nội dung]]></value>
+		</item>
+		-->
+	</item>	
+	<item name="vote_search_target_list2" type="array">
+		<item name="module_srl">
+			<value xml:lang="ko"><![CDATA[모듈번호(module_srl)]]></value>
+			<value xml:lang="en"><![CDATA[module_srl]]></value>
+		</item>
+		<item name="document_srl">
+			<value xml:lang="ko"><![CDATA[문서번호(document_srl)]]></value>
+			<value xml:lang="en"><![CDATA[document_srl]]></value>
+		</item>
+		<item name="category_srl">
+			<value xml:lang="ko"><![CDATA[분류번호(category_srl)]]></value>
+			<value xml:lang="en"><![CDATA[category_srl]]></value>
+		</item>
+	</item>	
+	<item name="move_search_target_list" type="array">
+		<item name="target_module">
+			<value xml:lang="ko"><![CDATA[대상 모듈번호(module_srl)]]></value>
+		</item>
+		<item name="target_category">
+			<value xml:lang="ko"><![CDATA[대상 분류번호(category_srl)]]></value>
+		</item>
+		<item name="move_module">
+			<value xml:lang="ko"><![CDATA[이동할 모듈번호(module_srl)]]></value>
+		</item>
+		<item name="move_category">
+			<value xml:lang="ko"><![CDATA[이동할 분류번호(category_srl)]]></value>
+		</item>
+	</item>	
+	
+</lang>

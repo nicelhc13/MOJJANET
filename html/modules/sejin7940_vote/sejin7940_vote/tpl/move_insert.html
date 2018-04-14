@@ -1,0 +1,115 @@
+<!--#include('_header.html')-->
+<load target="./js/sejin7940_vote_admin.js" usecdn="true" />
+
+
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/sejin7940_vote/tpl/move_insert/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form action="./" method="post" id="fo_management" class="x_form-horizontal" no-error-return-url="true">
+	<input type="hidden" name="act" value="procSejin7940_voteAdminMoveInsert">
+	<input type="hidden" name="module" value="{$module}" />
+
+	<input type="hidden" name="success_return_url" value="{getUrl('','module','admin','act','dispSejin7940_voteAdminMoveList')}" />
+	<input type="hidden" name="error_return_url" value="{getRequestUriByServerEnviroment()}" />
+
+	<input type="hidden" name="xe_validator_id" value="modules/sejin7940_vote/tpl/move_insert/1" />
+
+
+	<section class="section">
+		<h1>{$lang->subtitle_primary}</h1>
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="target_module">대상 {$lang->module}</label>
+			<div class="x_controls">
+				<input type="hidden" name="target_module" id="target_module" value="{$module_srl}" />
+				<input type="text" name="_target_module" id="_target_module" value="{$mid} ({$browser_title})" readonly="readonly" /><a href="{getUrl('','module','module','act','dispModuleSelectList','id','target_module','type','single')}" onclick="popopen(this.href,'ModuleSelect');return false;" class="button green"><span>{$lang->cmd_select}</span></a>
+			</div>
+		</div>
+
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="target_category">대상 {$lang->category}</label>
+			<div class="x_controls">
+				<select id="target_category" name="target_category">
+				</select>
+				<p class="x_help-block">'분류 없음'으로 선택시 해당 게시판의 모든 글이 대상<br>특정 카테고리 지정하고프면 반드시 그 카테고리를 지정해야함 (상위카테고리 개념 적용 안 됨)</p>
+			</div>
+		</div>
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="target_module2">이동할 모듈</label>
+			<div class="x_controls">
+				<input type="hidden" name="target_module2" id="target_module2" value="{$module_srl}" />
+				<input type="text" name="_target_module2" id="_target_module2" value="{$mid} ({$browser_title})" readonly="readonly" /><a href="{getUrl('','module','module','act','dispModuleSelectList','id','target_module2','type','single')}" onclick="popopen(this.href,'ModuleSelect');return false;" class="button green"><span>{$lang->cmd_select}</span></a>
+			</div>
+		</div>
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="target_category2">이동할 {$lang->category}</label>
+			<div class="x_controls">
+				 <select id="target_category2" name="target_category2">
+				  </select>
+				  <p class="x_help-block">특정 카테고리로 이동시키고 싶은 경우 분류를 선택해주세요</p>
+			</div>
+		</div>
+
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="move_type">이동할지 복사할지 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="move_type" value="move" checked/>이동
+				<input type="radio" name="move_type" value="copy"/>복사
+				<p class="x_help-block">복사한 경우 원본글과 완전히 분리됨. 따라서 복사 후엔 댓글이나 조회수 등이 전부 별개</p>
+			</div>
+		</div>
+
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="change_regdate">문서순서나 등록일 변경 여부</label>
+			<div class="x_controls">
+			<select  name="change_regdate" id="change_regdate">
+				<option value="N" checked/>변경 없음 (기존 날짜와 문서순서 유지)</option>
+				<option value="L"/>문서순서 값을 최신값으로 변경 (정렬을 문서번호 순으로)</option>
+				<option value="Y"/>이동된 날짜로 등록일을 변경 (정렬을 등록일 기준으로)</option>
+			</select>
+			</div>
+		</div>
+
+
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="move_voted">이동기준 추천수</label>
+			<div class="x_controls">
+				<input type="text" id="move_voted" name="move_voted" class="move_voted" /> 회 이상
+				<p>같은 글번호에 대해 다른 기준으로 여러번의 복사는 불가능함<br>복사 기준 보다 이동 추천수 기준이 높을때는 각각 가능<br>같은 추천수 기준으로는 복수개의 복사 및 이동이 동시에 가능</p>
+			</div>
+		</div>
+		<!--@if($use=='Y')-->
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="move_readed">이동기준 조회수</label>
+			<div class="x_controls">
+				<input type="text" id="move_readed" name="move_readed" class="move_readed" />
+			</div>
+		</div>
+		<!--@end-->
+		<!--
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="move_readed">이동기준 글등록 경과기간 (단위:일)</label>
+			<div class="x_controls">
+				<input type="text" id="move_term" name="move_term" class="move_term" />
+			</div>
+		</div>
+		-->
+	</section>
+
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-left">
+			<a href="{getUrl('act', 'dispSejin7940_voteAdminMoveList')}" type="button" class="x_btn">{$lang->cmd_cancel}</a>
+		</div>
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>
+
+
+
+<!-- 카테고리 자동 변경 기능 위해 -->
+<script type="text/javascript">
+    jQuery(function() { doGetCategoryFromModule({$module_srl}); } );
+    jQuery(function() { doGetCategoryFromModule2({$module_srl}); } );
+</script>

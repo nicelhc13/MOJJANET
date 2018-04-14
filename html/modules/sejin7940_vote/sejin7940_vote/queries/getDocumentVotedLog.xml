@@ -1,0 +1,30 @@
+<query id="getDocumentVotedLog" action="select">
+    <tables>
+        <table name="document_voted_log" />
+        <table name="documents" />
+    </tables>
+    <columns>
+        <column name="*" />
+        <column name="document_voted_log.member_srl" alias="voted_member_srl" />
+        <column name="documents.member_srl" alias="document_member" />
+        <column name="document_voted_log.regdate" alias="voted_date" />
+        <column name="documents.module_srl" alias="document_module_srl" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="document_voted_log.document_srl" default="documents.document_srl"  />
+        <condition operation="equal" column="document_voted_log.document_srl" var="document_srl"  pipe="and" />
+        <condition operation="equal" column="documents.module_srl" var="module_srl"  pipe="and" />
+        <condition operation="notin" column="documents.module_srl" var="except_module_srl"  pipe="and" />
+        <condition operation="equal" column="documents.category_srl" var="category_srl"  pipe="and" />
+        <group pipe="and">
+            <condition operation="equal" column="document_voted_log.member_srl" var="member_srl" filter="number" pipe="and" />
+            <condition operation="equal" column="document_voted_log.ipaddress" var="ipaddress" pipe="and" />
+        </group>
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="document_voted_log.regdate" order="sort_order" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+</query>

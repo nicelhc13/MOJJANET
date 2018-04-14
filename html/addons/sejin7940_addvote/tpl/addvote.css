@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* NHN > Jeong Chan Myeong(dece24@nhncorp.com) */
+.wgtRv{ clear:both; padding:15px 0; text-align:center;}
+.wgtRv .btnRv,
+.wgtRv .btnRv button{ position:relative; display:inline-block; height:26px; padding:0; margin:0; border:0; overflow:visible; cursor:pointer; background:transparent url(./buttonRv.gif) no-repeat; font:11px/26px 돋움, Dotum; }
+.wgtRv .btnRv { margin:0px 5px;}
+.wgtRv .btnRv button{ left:-3px; *vertical-align:top; padding:0 5px 0 27px;}
+.wgtRv .btnRo{ background-position:right top;}
+.wgtRv .btnRo button{ background-position:left top;}
+.wgtRv .btnRx{ background-position:right -30px;}
+.wgtRv .btnRx button{ background-position:left -30px;}
+.wgtRv .btnRt{ background-position:right -60px;}
+.wgtRv .btnRt button{ background-position:left -60px;}
+.wgtRv .btnRs{ background-position:right -60px; margin-left:20px;}
+.wgtRv .btnRs button{ background-position:left -60px;}
+.wgtRv .btnRv .tx{ letter-spacing:-1px;}
+.wgtRv .btnRv .num{ font-weight:bold; padding-left:3px;}
+.wgtRv .btnRo .num{ color:#f00;}
+.wgtRv .btnRx .num{ color:#1a9900;}
+.wgtRv .btnRt .num{ color:#ffb238;}

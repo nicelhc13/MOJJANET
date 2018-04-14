@@ -1,0 +1,8 @@
+<query id="deleteDocumentMoveAuto" action="delete">
+    <tables>
+        <table name="document_move_auto" />
+    </tables>
+    <conditions>
+        <condition operation="in" column="auto_srl" var="auto_srl" notnull="notnull" />
+    </conditions>
+</query>

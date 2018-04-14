@@ -1,0 +1,10 @@
+<table name="document_move_log">
+    <column name="document_srl" type="number" size="11"  />
+    <column name="target_module" type="number" size="11"/>
+    <column name="target_category" type="number" size="11" />
+    <column name="move_module" type="number" size="11" />
+    <column name="move_category" type="number" size="11" />
+    <column name="move_type" type="varchar" size="10" />
+    <column name="regdate" type="date"  />
+    <column name="member_srl" type="number" size="11" />  <!-- 원본 작성자 / 검색용 -->
+</table>

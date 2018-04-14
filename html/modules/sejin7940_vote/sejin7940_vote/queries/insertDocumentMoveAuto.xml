@@ -1,0 +1,18 @@
+<query id="insertDocumentMoveAuto" action="insert">
+    <tables>
+        <table name="document_move_auto" />
+    </tables>
+    <columns>
+        <column name="auto_srl" var="auto_srl" filter="number" notnull="notnull" />
+        <column name="target_module" var="target_module" filter="number"  />
+		<column name="target_category" var="target_category" />
+        <column name="move_module" var="move_module" filter="number"  />
+        <column name="move_category" var="move_category" filter="number"/>
+        <column name="move_type" var="move_type" />
+        <column name="change_regdate" var="change_regdate" />
+        <column name="move_voted" var="move_voted" filter="number"/>
+        <column name="move_readed" var="move_readed" filter="number"/>
+        <column name="move_term" var="move_term" filter="number"/>
+        <column name="regdate" var="regdate" default="curdate()" />
+    </columns>
+</query>

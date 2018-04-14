@@ -1,0 +1,18 @@
+<filter name="insert_move" module="sejin7940_vote" act="procSejin7940_voteAdminMoveInsert" confirm_msg_code="confirm_submit">
+    <form>
+        <node target="target_module" required="true" />
+        <node target="move_module" required="true" />
+	</form>
+    <parameter>
+        <param name="target_module" target="target_module" />
+        <param name="target_category" target="target_category" />
+        <param name="target_module2" target="target_module2" />
+        <param name="target_category2" target="target_category2" />
+        <param name="move_type" target="move_type" />
+        <param name="move_voted" target="move_voted" />
+    </parameter>
+    <response callback_func="completeInsert">
+        <tag name="error" />
+		<tag name="page" />
+	</response>
+</filter>

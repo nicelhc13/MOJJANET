@@ -1,0 +1,14 @@
+<query id="getDocumentMoveLog" action="select">
+    <tables>
+        <table name="document_move_log" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+	<group>
+		<condition operation="equal" column="move_type" default="copy" />
+		<condition operation="equal" column="document_srl" var="document_srl" pipe="and" />
+	</group>
+    </conditions>
+</query>
