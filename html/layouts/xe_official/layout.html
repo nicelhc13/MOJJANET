@@ -37,6 +37,7 @@ body{background:url({$layout_info->background_image}) repeat-x left top;}
 		</form>
 	</div>
 	<div class="body">
+	<!--
 		<div class="lnb">
 			<img widget="login_info" skin="xe_official" colorset="{$layout_info->colorset}" />
 			<h2 loop="$main_menu->list=>$key1,$val1" cond="$val1['selected']"><a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a></h2>
@@ -47,7 +48,7 @@ body{background:url({$layout_info->background_image}) repeat-x left top;}
 					</ul>
 				</li>
 			</ul>
-		</div>
+		</div>-->
 		<div class="content xe_content">
 			{$content}
 		</div>

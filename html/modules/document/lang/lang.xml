@@ -515,6 +515,12 @@
 			<value xml:lang="tr"><![CDATA[Oylama Sayısı (over)]]></value>
 			<value xml:lang="vi"><![CDATA[Lượt bình chọn]]></value>
 		</item>
+		<item name="cmd_vote">
+			<value xml:lang="ko"><![CDATA[추천]]></value>
+		</item>
+		<item name="cmd_vote_down">
+			<value xml:lang="ko"><![CDATA[비추]]></value>
+		</item>
 		<item name="blamed_count">
 			<value xml:lang="ko"><![CDATA[비추천 수 (이상)]]></value>
 			<value xml:lang="jp"><![CDATA[非推奨数（以上）]]></value>

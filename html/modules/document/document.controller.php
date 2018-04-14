@@ -1069,8 +1069,12 @@ class documentController extends document
 	 */
 	function updateVotedCount($document_srl, $point = 1)
 	{
-		if($point > 0) $failed_voted = 'failed_voted';
+		
+		if($point > 0) {
+			$failed_voted = 'failed_voted';
+		}
 		else $failed_voted = 'failed_blamed';
+		
 		// Return fail if session already has information about votes
 		if($_SESSION['voted_document'][$document_srl])
 		{

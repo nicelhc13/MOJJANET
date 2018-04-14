@@ -36,7 +36,8 @@ html{background:#fff url(../images/default/bgBody.gif) repeat-x left top;font-fa
 .iSearch .iText:focus{border:1px solid #B0B0AF;background-color:#A9A4A3}
 .iSearch .submit{vertical-align:middle;_position:relative;_top:-1px}
 /* Site Layout - Content Body */
-.body{position:relative;z-index:1;padding-bottom:30px;background:url(../images/default/bgContentBody.gif) repeat-y left top;border-bottom:1px solid #ddd;zoom:1}
+/*.body{position:relative;z-index:1;padding-bottom:30px;background:url(../images/default/bgContentBody.gif) repeat-y left top;border-bottom:1px solid #ddd;zoom:1}*/
+.body{position:relative;z-index:1;padding-bottom:30px;border-bottom:1px solid #ddd;zoom:1}
 .body:after{content:"";display:block;clear:both}
 /* Site Layout - Column Left */
 .lnb{position:relative;width:201px;float:left}
@@ -51,7 +52,8 @@ html{background:#fff url(../images/default/bgBody.gif) repeat-x left top;font-fa
 .locNav li li a{padding:6px 5px 6px 10px;width:169px;color:#818181 !important;border:none;background:none !important;border:none !important}
 .locNav li.active li.active a{color:#ff1a00 !important;font-weight:bold !important;background:url(../images/default/bulletLnb.gif) no-repeat 175px center  !important}
 /* Site Layout - Column Right */
-.content{width:740px;float:right}
+/*.content{width:740px;float:right} */
+.content{width:960px;float:center}
 /* Site Layout - Footer */
 .footer{border-top:3px solid #f4f4f4;padding:1em 0;clear:both}
 .footer p{text-align:center;margin:0}

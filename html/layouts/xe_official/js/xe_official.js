@@ -1,10 +1,10 @@
 jQuery(function($){
 	// Language Select
-	$('.language>.toggle').click(function(){
+	$('.language>.toggle').click(function(){ // When all toggeles of all the languages are clicked.
 		$('.selectLang').toggle();
 	});
     // Global Navigation Bar
-    var gMenu = $('.header>div.gnb');
+    var gMenu = $('.header>div.gnb'); // <head><div class="gnb"> ..
     var gItem = gMenu.find('>ul>li');
     var ggItem = gMenu.find('>ul>li>ul>li');
     var lastEvent = null;
