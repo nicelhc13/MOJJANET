@@ -6,6 +6,7 @@
 html{background:#fff url(../images/default/bgBody.gif) repeat-x left top;font-family:Tahoma, Geneva, sans-serif}
 .xe{width:960px;margin:1.5em auto 0 auto}
 /* Site Layout - Header */
+.toplogin{position:relative;width:960px;height:top:0px;left:0;height:30px}
 .header{position:relative;width:960px;height:120px;background:url(../images/default/bgHeader.jpg) no-repeat right top;margin-bottom:10px;z-index:2}
 .body .header{width:auto;height:auto;background:none;margin:auto;z-index:1}
 .header h1{margin:0;position:absolute;top:32px;left:25px}

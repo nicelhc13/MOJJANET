@@ -7,7 +7,10 @@ body{background:url({$layout_info->background_image}) repeat-x left top;}
 </style>
 <!--@if(!$layout_info->colorset)-->{@$layout_info->colorset = "default"}<!--@end-->
 <div class="xe">
-	<div class="header">
+	<div class="toplogin">
+			<img class="login_sunoo" widget="login_sunoo" skin="sunoo_loginline" search_use="Y" keep_signed="Y" level_use="Y" point_use="Y" latest_login="Y"/>
+	</div>
+	<div class="header">	
 		<h1>
 			<a href="{$layout_info->index_url}" cond="$layout_info->logo_image"><img src="{$layout_info->logo_image}" alt="logo" border="0" /></a>
 			<a href="{$layout_info->index_url}" cond="!$layout_info->logo_image">{$layout_info->logo_image_alt}</a>
@@ -20,9 +23,6 @@ body{background:url({$layout_info->background_image}) repeat-x left top;}
 					</ul>
 				</li>
 			</ul>
-		</div>
-		<div>
-			<img class="login_sunoo" widget="login_sunoo" skin="sunoo_loginline" search_use="Y" keep_signed="Y" level_use="Y" point_use="Y" latest_login="Y"/>
 		</div>
 <!--
 		<form action="{getUrl()}" method="post" class="iSearch">
